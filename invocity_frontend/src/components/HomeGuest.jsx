@@ -15,7 +15,7 @@ const HomeGuest = () => {
         setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
         setFade(true);
       }, 500);
-    }, 2500);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -23,7 +23,12 @@ const HomeGuest = () => {
     <Container fluid className="home-container ">
       <Row className="home-container-inner">
         <Col md={6} className="py-5 mt-5">
-          <Badge bg="success" className="mb-3">
+          <Badge
+            bg="success"
+            className="mb-4"
+            style={{ backgroundColor: "#00AFD7" }}
+            variant="dot"
+          >
             100% Safe & Secure!
           </Badge>
           <h1 className="display-4 fw-bold">

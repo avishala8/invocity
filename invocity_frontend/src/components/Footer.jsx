@@ -13,6 +13,7 @@ import logo from "../assets/logo.png";
 function Footer() {
   return (
     <footer className="footer">
+      <hr className="separator-line" />
       <div className="footer-container">
         <div className="logo-container">
           <img src={logo} alt="Invocity" />
