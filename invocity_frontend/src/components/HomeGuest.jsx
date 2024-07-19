@@ -15,7 +15,7 @@ const HomeGuest = () => {
         setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
         setFade(true);
       }, 500);
-    }, 3000);
+    }, 2500);
     return () => clearInterval(interval);
   }, []);
 

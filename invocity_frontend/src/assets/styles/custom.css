@@ -105,6 +105,7 @@
   flex-direction: column;
 }
 /* HomeGuest  */
+
 @keyframes slideDown {
   0% {
     opacity: 0;
@@ -128,12 +129,13 @@
 }
 
 .fade-in {
-  animation: slideDown 0.5s ease-in-out forwards;
+  animation: slideDown 0.5s ease-in-out;
 }
 
 .fade-out {
-  animation: slideUp 0.5s ease-in-out forwards;
+  animation: slideUp 0.5s ease-in-out;
 }
+
 .home-container {
   display: flex;
   flex-direction: column;
