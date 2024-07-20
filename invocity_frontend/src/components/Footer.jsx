@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTwitter,
+  faXTwitter,
   faFacebook,
   faInstagram,
   faLinkedin,
@@ -19,7 +19,7 @@ function Footer() {
           <img src={logo} alt="Invocity" />
           <p className="tagline">Ab Business Karo, Tension Free!</p>
           <div className="social-icons">
-            <FontAwesomeIcon icon={faTwitter} />
+            <FontAwesomeIcon icon={faXTwitter} />
             <FontAwesomeIcon icon={faFacebook} />
             <FontAwesomeIcon icon={faInstagram} />
             <FontAwesomeIcon icon={faLinkedin} />
@@ -132,7 +132,8 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        CopyRight &copy;{new Date().getFullYear()} All rights reserved.
+        &copy; {new Date().getFullYear()} Invocity Private Limited. All rights
+        reserved.
       </div>
     </footer>
   );

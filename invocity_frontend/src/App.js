@@ -7,6 +7,7 @@ import Templates from "./components/Templates";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import FAQSection from "./components/FAQSection";
+import ContactUs from "./components/ContactUs";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/templates" element={<Templates />} />
         <Route path="/FAQs" element={<FAQSection />} />
+        <Route path="/contactus" element={<ContactUs />} />
       </Routes>
       <Footer />
     </BrowserRouter>
