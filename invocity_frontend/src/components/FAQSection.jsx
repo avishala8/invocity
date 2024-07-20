@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import FAQItem from "./FAQItem";
 
 const FAQs = [
   {
@@ -79,13 +78,14 @@ const FAQSection = () => {
     <div className="faq-section faq-container mt-5">
       <h1 className="faq-title">Frequently Asked Questions</h1>
       {FAQs.map((faq, index) => (
-        <FAQItem
-          key={index}
-          question={faq.question}
-          answer={faq.answer}
-          isOpen={openIndex === index}
-          onClick={() => handleToggle(index)}
-        />
+        <div key={index} className="faq-item">
+          <div className="faq-question" onClick={() => handleToggle(index)}>
+            {faq.question}
+          </div>
+          {openIndex === index && (
+            <div className="faq-answer">{faq.answer}</div>
+          )}
+        </div>
       ))}
     </div>
   );
