@@ -80,7 +80,8 @@ const FAQSection = () => {
       {FAQs.map((faq, index) => (
         <div key={index} className="faq-item">
           <div className="faq-question" onClick={() => handleToggle(index)}>
-            {faq.question}
+            <span>{faq.question}</span>
+            <span>{openIndex === index ? "▲" : "▼"}</span>
           </div>
           {openIndex === index && (
             <div className="faq-answer">{faq.answer}</div>

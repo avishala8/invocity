@@ -175,6 +175,9 @@
 }
 
 .faq-question {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   cursor: pointer;
   padding: 10px;
   background: #f8f9fa;
@@ -213,4 +216,84 @@ i {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+/*  sign in page */
+.signin-background {
+  background: url("https://github.com/avishala8/invocity/blob/main/invocity_frontend/src/assets/login.png")
+    no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signin-container {
+  max-width: 800px;
+}
+
+.signin-box {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.signin-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.signin-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.signin-welcome {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.signin-button {
+  background-color: #007bff;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.signin-button:hover {
+  background-color: #0056b3;
+}
+
+.divider {
+  margin: 20px 0;
+}
+
+.signin-google {
+  background-color: white;
+  border: 1px solid #ddd;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.signin-google:hover {
+  background-color: #f7f7f7;
+}
+
+.signin-footer {
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.signin-footer a {
+  color: #007bff;
+}
+
+.signin-footer a:hover {
+  text-decoration: underline;
 }
