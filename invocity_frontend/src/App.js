@@ -13,16 +13,27 @@ import SignIn from "./components/Signin";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
-        <Route path="/" element={<HomeGuest />} />
-        <Route path="/aboutus" element={<Aboutus />} />
-        <Route path="/templates" element={<Templates />} />
-        <Route path="/FAQs" element={<FAQSection />} />
-        <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/login" element={<SignIn />} />
+        <Route
+          path="*"
+          element={
+            <>
+              <Header />
+              <main>
+                <Routes>
+                  <Route path="/" element={<HomeGuest />} />
+                  <Route path="/aboutus" element={<Aboutus />} />
+                  <Route path="/templates" element={<Templates />} />
+                  <Route path="/FAQs" element={<FAQSection />} />
+                  <Route path="/contactus" element={<ContactUs />} />
+                </Routes>
+              </main>
+              <Footer />
+            </>
+          }
+        />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 }

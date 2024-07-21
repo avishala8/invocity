@@ -37,7 +37,7 @@ const header = () => {
                 <Nav.Link>Contact Us</Nav.Link>
               </LinkContainer>
               <LinkContainer className="nav-link-spacing" to="/login">
-                <Button className="btn" href="login">
+                <Button className="btn" href="/login">
                   Login
                 </Button>
               </LinkContainer>
