@@ -1,0 +1,11 @@
+{
+  "name": "invocity_backend",
+  "version": "1.0.0",
+  "description": "backend for invoice generator app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abhishek Vishala",
+  "license": "ISC"
+}
