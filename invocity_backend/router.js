@@ -11,5 +11,6 @@ apiRouter.get("/", (req, res) =>
 );
 apiRouter.post("/login", userController.apiLogin);
 apiRouter.post("/register", userController.apiRegister);
+// apiRouter.post("/ifUserExists/:phoneNumber", userController.ifUserExists);
 
 module.exports = apiRouter;

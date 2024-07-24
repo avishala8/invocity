@@ -7,14 +7,15 @@ let User = function (data) {
 
 User.prototype.login = function () {
   return new Promise(async (resolve, reject) => {
-    try {
-      let user = await usersCollection.findOne({
-        phoneNumber: this.data.phoneNumber,
-      });
-      resolve(user);
-    } catch (error) {
-      reject("Login Failed");
+    let user = await usersCollection.findOne({
+      phoneNumber: this.data.phoneNumber,
+    });
+    if (!user) {
+      this.errors.push("Phone Number is not Registered or Invalid.");
+      return reject(this.errors);
     }
+    resolve(user);
+
     //   let user = await usersCollection.findOne({
     //     phoneNumber: this.data.phoneNumber,
     //   });
@@ -31,9 +32,20 @@ User.prototype.login = function () {
 User.prototype.register = function () {
   return new Promise(async (resolve, reject) => {
     if (!this.errors.length) {
-      const err = await usersCollection.insertOne(this.data);
-      console.log(err);
-      resolve();
+      let existingUser = await usersCollection.findOne({
+        phoneNumber: this.data.phoneNumber,
+      });
+      if (existingUser) {
+        this.errors.push("Phone Number is already Registered");
+        return reject(this.errors);
+      }
+      try {
+        const result = await usersCollection.insertOne(this.data);
+        resolve("User Registered");
+      } catch (err) {
+        this.errors.push("Error Occured while registering");
+        reject(err);
+      }
     } else {
       reject(this.errors);
     }

@@ -5,11 +5,10 @@ exports.apiLogin = function (req, res) {
   user
     .login()
     .then(function (result) {
-      // res.json(result);
       res.status(200).send("User login successful");
     })
     .catch(function (e) {
-      res.status(500).send({ error: e });
+      res.status(401).send({ error: e }); // 401 Unauthorized for login errors
     });
 };
 exports.apiRegister = function (req, res) {
@@ -20,6 +19,21 @@ exports.apiRegister = function (req, res) {
       res.status(200).send("User registered successfully");
     })
     .catch((regErrors) => {
-      res.status(500).send(regErrors);
+      // res.status(500).send(regErrors);
+      res.status(409).json({
+        success: false,
+        message: "User already exists",
+      });
     });
 };
+
+// exports.ifUserExists = function (req, res, next) {
+//   User.findone(req.params.phoneNumber)
+//     .then(function (userDocument) {
+//       req.profileUser = userDocument;
+//       next();
+//     })
+//     .catch(function (e) {
+//       res.json(false);
+//     });
+// };

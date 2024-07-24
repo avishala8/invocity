@@ -37,23 +37,28 @@ const SignIn = () => {
       async function registerUser() {
         try {
           setLoading(true); // Set loading to true when request starts
-          // const response = await Axios.get(
-          //   `/check-mobile-number/${phoneNumber}`
-          // );
 
-          // if (response.data.exists) {
-          //   setError("Mobile number already registered.");
-          //   setLoading(false); // Set loading to false when request ends
-          //   setIsFormSubmitted(false);
-          //   return;
-          // }
-          await Axios.post("/register", {
+          const response = await Axios.post("/register", {
             phoneNumber: phoneNumber,
           });
 
-          appDispatch({ type: "flashMessage", value: "User Registered!" });
+          if (response.data.success) {
+            setError("User Already Exists");
+
+            appDispatch({
+              type: "flashMessage",
+              value: "User Already Exists!",
+            });
+          } else {
+            appDispatch({ type: "success", value: "true" });
+            appDispatch({ type: "flashMessage", value: "User Registered!" });
+          }
         } catch (error) {
-          console.log(error);
+          appDispatch({ type: "success", value: false });
+          appDispatch({
+            type: "flashMessage",
+            value: "User Already Exists!",
+          });
         } finally {
           setLoading(false); // Set loading to false when request ends
           setIsFormSubmitted(false);

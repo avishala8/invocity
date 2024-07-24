@@ -22,11 +22,14 @@ Axios.defaults.baseURL = process.env.BACKENDURL || "http://localhost:8080";
 
 function App() {
   const initialState = {
-    loggedIn: true,
+    successMsg: Boolean(true),
     flashMessages: [],
   };
   function ourReducer(draft, action) {
     switch (action.type) {
+      case "success":
+        draft.successMsg = action.value;
+        return;
       case "flashMessage":
         draft.flashMessages.push(action.value);
         return;
