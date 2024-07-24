@@ -37,6 +37,16 @@ const SignIn = () => {
       async function registerUser() {
         try {
           setLoading(true); // Set loading to true when request starts
+          // const response = await Axios.get(
+          //   `/check-mobile-number/${phoneNumber}`
+          // );
+
+          // if (response.data.exists) {
+          //   setError("Mobile number already registered.");
+          //   setLoading(false); // Set loading to false when request ends
+          //   setIsFormSubmitted(false);
+          //   return;
+          // }
           await Axios.post("/register", {
             phoneNumber: phoneNumber,
           });

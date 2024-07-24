@@ -9,7 +9,7 @@ apiRouter.get("/", (req, res) =>
     "Hello, if you see this message that means your backend is up and running successfully. Congrats! "
   )
 );
-// apiRouter.post("/login", userController.apiLogin);
+apiRouter.post("/login", userController.apiLogin);
 apiRouter.post("/register", userController.apiRegister);
 
 module.exports = apiRouter;

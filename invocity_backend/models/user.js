@@ -1,22 +1,32 @@
-const usersCollection = require("../db").db().collection("Users");
+const usersCollection = require("../db").db("Users").collection("Users");
 
 let User = function (data) {
   this.data = data;
   this.errors = [];
 };
 
-// User.prototype.login = function () {
-//   return async () => {
-//     let user = await usersCollection.findOne({
-//       phoneNumber: this.data.phoneNumber,
-//     });
-//     if (user) {
-//       console.log("Login Successfull");
-//     } else {
-//       console.log("Phone Number is not Registered or Invalid.");
-//     }
-//   };
-// };
+User.prototype.login = function () {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = await usersCollection.findOne({
+        phoneNumber: this.data.phoneNumber,
+      });
+      resolve(user);
+    } catch (error) {
+      reject("Login Failed");
+    }
+    //   let user = await usersCollection.findOne({
+    //     phoneNumber: this.data.phoneNumber,
+    //   });
+    //   if (user) {
+    //     console.log("Login Successfull");
+    //     resolve(user);
+    //   } else {
+    //     reject("Login Failed");
+    //     console.log("Phone Number is not Registered or Invalid.");
+    //   }
+  });
+};
 
 User.prototype.register = function () {
   return new Promise(async (resolve, reject) => {

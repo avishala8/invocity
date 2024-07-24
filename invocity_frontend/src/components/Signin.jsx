@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import Axios from "axios";
+import DispatchContext from "./DispatchContext";
 
 const SignIn = () => {
+  const appDispatch = useContext(DispatchContext);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [error, setError] = useState("");
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const handlePhoneNumberChange = (event) => {
     const input = event.target.value;
@@ -22,8 +27,31 @@ const SignIn = () => {
     }
 
     // Handle form submission
-    console.log("Form submitted:", phoneNumber);
+    setIsFormSubmitted(true);
   };
+  useEffect(() => {
+    if (error.length === 0 && isFormSubmitted) {
+      async function loginUser() {
+        try {
+          // setLoading(true);
+          const response = await Axios.post("/login", {
+            phoneNumber,
+          });
+          console.log(response);
+          if (response.data) {
+            // appDispatch({ type: "login", payload: response.data });
+            appDispatch({ type: "flashMessage", value: "Login Successfull!" });
+          }
+        } catch {
+          setError("Something went wrong. Please try again later.");
+        } finally {
+          // setLoading(false); // Set loading to false when request ends
+          setIsFormSubmitted(false);
+        }
+      }
+      loginUser();
+    }
+  }, [isFormSubmitted]);
 
   return (
     <div className="signin-background">
