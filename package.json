@@ -1,0 +1,23 @@
+{
+  "name": "invocity",
+  "version": "1.0.0",
+  "description": "Invoice Generator",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node invocity_backend/db.js",
+    "server": "nodemon invocity_backend/db.js",
+    "client": "npm start --prefix invocity_frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Abhishek Vishala",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.3"
+  }
+}
