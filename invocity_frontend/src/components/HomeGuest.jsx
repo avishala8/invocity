@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Badge, Image } from "react-bootstrap";
 import hero from "../assets/hero.webp";
+import imageWtsapp from "../assets/share_invoices_on_whatsapp.webp";
+import fast_payments from "../assets/fast_payments.webp";
 
 const words = ["Accounting", "Invoicing", "Billing", "Quotations"];
 
@@ -56,6 +58,44 @@ const HomeGuest = () => {
             Trusted by <span className="fw-bold">10,00,000+</span> SMEs
           </h4>
           <h5 className="text-primary">#AtmaNirbharBharat 🇮🇳</h5>
+        </Col>
+      </Row>
+
+      <Row className="align-items-center subinfo">
+        <Col md={5}>
+          <img
+            src={imageWtsapp}
+            className="img-fluid"
+            alt="Share Invoices on WhatsApp"
+          />
+        </Col>
+        <Col md={4}>
+          <h1>Share invoices on WhatsApp & Email</h1>
+          <p>
+            Swipe helps you reach your customers and vendors wherever they are.
+            Share invoices and purchase orders on WhatsApp and Email.
+          </p>
+
+          <Button variant="primary">Get Started with Invocity</Button>
+        </Col>
+      </Row>
+      <Row className="align-items-center subinfo">
+        <Col md={4}>
+          <h1>Get payments faster</h1>
+          <p>
+            With Swipe you can send payment links and even QR codes so that
+            customers can pay you quickly. Send payment reminders easily. Make
+            payments to your suppliers conveniently from your trusted UPI apps.
+          </p>
+
+          <Button variant="primary">Get Started with Invocity</Button>
+        </Col>{" "}
+        <Col md={5}>
+          <img
+            src={fast_payments}
+            className="img-fluid"
+            alt="Share Invoices on WhatsApp"
+          />
         </Col>
       </Row>
     </Container>

@@ -153,6 +153,10 @@
 .home-container-inner {
   padding-left: 15%;
 }
+.subinfo {
+  padding-left: 15rem;
+  padding-top: 3rem;
+}
 
 /* FAQ Section */
 .faq-container {
