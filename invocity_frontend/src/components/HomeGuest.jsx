@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Badge, Image } from "react-bootstrap";
 import hero from "../assets/hero.webp";
-import imageWtsapp from "../assets/share_invoices_on_whatsapp.webp";
-import fast_payments from "../assets/fast_payments.webp";
+// import imageWtsapp from "../assets/share_invoices_on_whatsapp.webp";
+import imageWtsapp from "../assets/whatsapp_share.png";
+import fast_payments from "../assets/fast_payments.png";
 
 const words = ["Accounting", "Invoicing", "Billing", "Quotations"];
 
