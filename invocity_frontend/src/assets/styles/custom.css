@@ -154,8 +154,12 @@
   padding-left: 15%;
 }
 .subinfo {
-  padding-left: 15rem;
-  padding-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* padding-left: 20rem; */
+  /* padding-top: 5rem; */
+  margin: 6rem 4rem 0 4rem;
 }
 
 /* FAQ Section */
