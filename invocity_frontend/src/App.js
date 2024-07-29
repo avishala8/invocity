@@ -2,7 +2,7 @@
 import React, { Suspense } from "react";
 import { useImmerReducer } from "use-immer";
 import "./App.css";
-import Axios, { axios } from "axios";
+import Axios from "axios";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Aboutus from "./components/Aboutus";
@@ -10,6 +10,7 @@ import HomeGuest from "./components/HomeGuest";
 import Templates from "./components/Templates";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
+import Terms from "./components/Terms";
 import FAQSection from "./components/FAQSection";
 import ContactUs from "./components/ContactUs";
 import SignIn from "./components/Signin";
@@ -58,6 +59,7 @@ function App() {
                         <Route path="/templates" element={<Templates />} />
                         <Route path="/FAQs" element={<FAQSection />} />
                         <Route path="/contactus" element={<ContactUs />} />
+                        <Route path="/terms" element={<Terms />} />
                       </Routes>
                     </main>
                     <Footer />

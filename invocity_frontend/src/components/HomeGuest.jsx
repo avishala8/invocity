@@ -59,7 +59,7 @@ const HomeGuest = () => {
           <h4>
             Trusted by <span className="fw-bold">10,00,000+</span> SMEs
           </h4>
-          <h5 className="text-primary">#AtmaNirbharBharat 🇮🇳</h5>
+          <h5 className="text-danger">#AtmaNirbharBharat 🇮🇳</h5>
         </Col>
       </Row>
       <Row className="align-items-center subinfo">
