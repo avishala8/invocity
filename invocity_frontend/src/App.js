@@ -19,10 +19,13 @@ import LoadingDots from "./components/LoadingDots";
 import FlashMessages from "./components/FlashMessages";
 import StateContext from "./components/StateContext";
 import DispatchContext from "./components/DispatchContext";
+import Dashboard from "./components/Dashboard";
 Axios.defaults.baseURL = process.env.BACKENDURL || "http://localhost:8080";
 
 function App() {
   const initialState = {
+    login: Boolean(false),
+    user: {},
     successMsg: Boolean(true),
     flashMessages: [],
   };
@@ -33,6 +36,13 @@ function App() {
         return;
       case "flashMessage":
         draft.flashMessages.push(action.value);
+        return;
+      case "login":
+        draft.login = true;
+        draft.user = action.data;
+        return;
+      case "logout":
+        draft.login = false;
         return;
     }
   }
@@ -60,6 +70,7 @@ function App() {
                         <Route path="/FAQs" element={<FAQSection />} />
                         <Route path="/contactus" element={<ContactUs />} />
                         <Route path="/terms" element={<Terms />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                       </Routes>
                     </main>
                     <Footer />

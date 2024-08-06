@@ -2,12 +2,15 @@ import React, { useState, useContext, useEffect } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Axios from "axios";
 import DispatchContext from "./DispatchContext";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const appDispatch = useContext(DispatchContext);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [error, setError] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const navigate = useNavigate();
+
   // const [loading, setLoading] = useState(false);
 
   const handlePhoneNumberChange = (event) => {
@@ -39,11 +42,18 @@ const SignIn = () => {
           });
           console.log(response);
           if (response.data) {
-            // appDispatch({ type: "login", payload: response.data });
+            appDispatch({ type: "login", payload: response.data });
             appDispatch({ type: "flashMessage", value: "Login Successfull!" });
+            console.log(response.data);
+            navigate("/dashboard");
           }
         } catch {
-          setError("Something went wrong. Please try again later.");
+          setError("Please enter correct Mobile Number.");
+          appDispatch({ type: "success", value: false });
+          appDispatch({
+            type: "flashMessage",
+            value: "User Not Registered!",
+          });
         } finally {
           // setLoading(false); // Set loading to false when request ends
           setIsFormSubmitted(false);
