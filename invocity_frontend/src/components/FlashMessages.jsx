@@ -11,7 +11,7 @@ function FlashMessages(props) {
             key={index}
             className={
               "alert text-center floating-alert shadow-sm" +
-              (appState.successMsg ? " alert-success" : " alert-danger")
+              (appState.login ? " alert-success" : " alert-danger")
             }
           >
             {msg}

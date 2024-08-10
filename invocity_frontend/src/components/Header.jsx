@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import logo from "../assets/logo.png";
+import StateContext from "./StateContext";
+import DispatchContext from "./DispatchContext";
 
-const header = () => {
+const Header = () => {
+  const appState = useContext(StateContext);
+  const appDispatch = useContext(DispatchContext);
+
+  function handleLogout() {
+    appDispatch({ type: "logout" });
+    appDispatch({ type: "flashMessage", value: "Logout Successful!" });
+    console.log(appState);
+  }
+
   return (
     <header>
       <Navbar
@@ -36,24 +47,31 @@ const header = () => {
               <LinkContainer className="nav-link-spacing" to="/contactus">
                 <Nav.Link>Contact Us</Nav.Link>
               </LinkContainer>
-              <LinkContainer className="nav-link-spacing" to="/login">
-                <Button className="btn" href="/login">
-                  Login
-                </Button>
-              </LinkContainer>
-              <LinkContainer className="nav-link-spacing" to="/signup">
-                <Button className="btn" href="/signup">
-                  Sign Up
-                </Button>
-              </LinkContainer>
+              {!appState.login ? (
+                <>
+                  <LinkContainer className="nav-link-spacing" to="/login">
+                    <Button className="btn" href="/login">
+                      Login
+                    </Button>
+                  </LinkContainer>
+                  <LinkContainer className="nav-link-spacing" to="/signup">
+                    <Button className="btn" href="/signup">
+                      Sign Up
+                    </Button>
+                  </LinkContainer>
+                </>
+              ) : (
+                <LinkContainer
+                  className="nav-link-spacing"
+                  to="/"
+                  onClick={handleLogout}
+                >
+                  <Button className="btn" href="/" onClick={handleLogout}>
+                    Log Out
+                  </Button>
+                </LinkContainer>
+              )}
             </Nav>
-
-            {/* <Nav.Link as={Link} to="/login">
-              Login
-            </Nav.Link>
-            <Nav.Link as={Link} to="/signup">
-              Sign Up
-            </Nav.Link> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -61,4 +79,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;

@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useImmerReducer } from "use-immer";
 import "./App.css";
 import Axios from "axios";
@@ -26,7 +26,7 @@ function App() {
   const initialState = {
     login: Boolean(false),
     user: {},
-    successMsg: Boolean(true),
+    // successMsg: Boolean(true),
     flashMessages: [],
   };
   function ourReducer(draft, action) {
@@ -47,6 +47,7 @@ function App() {
     }
   }
   const [state, dispatch] = useImmerReducer(ourReducer, initialState);
+
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
@@ -70,7 +71,10 @@ function App() {
                         <Route path="/FAQs" element={<FAQSection />} />
                         <Route path="/contactus" element={<ContactUs />} />
                         <Route path="/terms" element={<Terms />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route
+                          path="/dashboard"
+                          element={state.login ? <Dashboard /> : <HomeGuest />}
+                        />
                       </Routes>
                     </main>
                     <Footer />
