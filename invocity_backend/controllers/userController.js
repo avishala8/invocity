@@ -1,11 +1,25 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 exports.apiLogin = function (req, res) {
   let user = new User(req.body);
+
   user
     .login()
     .then(function (result) {
-      res.status(200).send("User login successful");
+      // .env not loading the jwtsecret variable
+      res.json({
+        token: jwt.sign(
+          { phoneNumber: user.data.phoneNumber },
+          process.env.CONNECTION_STRING,
+          {
+            expiresIn: "1h",
+          }
+        ),
+        phoneNumber: user.data.phoneNumber,
+      });
     })
     .catch(function (e) {
       res.status(401).send({ error: e }); // 401 Unauthorized for login errors
@@ -16,7 +30,16 @@ exports.apiRegister = function (req, res) {
   user
     .register()
     .then(() => {
-      res.status(200).send("User registered successfully");
+      res.json({
+        token: jwt.sign(
+          { phoneNumber: user.data.phoneNumber },
+          process.env.JWTSECRET,
+          {
+            expiresIn: "1h",
+          }
+        ),
+        phoneNumber: user.data.phoneNumber,
+      });
     })
     .catch((regErrors) => {
       // res.status(500).send(regErrors);
@@ -27,13 +50,11 @@ exports.apiRegister = function (req, res) {
     });
 };
 
-// exports.ifUserExists = function (req, res, next) {
-//   User.findone(req.params.phoneNumber)
-//     .then(function (userDocument) {
-//       req.profileUser = userDocument;
-//       next();
-//     })
-//     .catch(function (e) {
-//       res.json(false);
-//     });
-// };
+exports.checkToken = function (req, res) {
+  try {
+    req.apiUser = jwt.verify(req.body.token, process.env.CONNECTION_STRING);
+    res.json(true);
+  } catch (e) {
+    res.json(false);
+  }
+};

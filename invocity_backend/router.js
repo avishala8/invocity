@@ -9,6 +9,7 @@ apiRouter.get("/", (req, res) =>
     "Hello, if you see this message that means your backend is up and running successfully. Congrats! "
   )
 );
+apiRouter.post("/checkToken", userController.checkToken);
 apiRouter.post("/login", userController.apiLogin);
 apiRouter.post("/register", userController.apiRegister);
 // apiRouter.post("/ifUserExists/:phoneNumber", userController.ifUserExists);

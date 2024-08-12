@@ -7,11 +7,14 @@ const Sales = () => {
       <div className="sidebar-item-border">
         <div className="flex-1 p-8">
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-2xl font-semibold flex items-center">
-              Sales <span className="text-pink-500 ml-2">▶</span>
-            </h1>
-            <div className="flex items-center space-x-4">
-              <button className="bg-gray-100 px-4 py-2 rounded flex items-center">
+            <div className="mb-8">
+              <h1 className="text-2xl font-semibold ">
+                Sales <span className="text-pink-500 ml-2">▶</span>
+              </h1>
+            </div>
+
+            <div className="space-x-4">
+              <button className="bg-gray-100 px-4 py-2 rounded ">
                 <FiSettings className="mr-2" />
                 Document Settings
               </button>

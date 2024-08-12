@@ -9,7 +9,7 @@ async function start() {
   if (start) console.log("connected to DB");
   module.exports = client;
   const app = require("./app");
-  app.listen(process.env.PORT, () => {
+  app.listen(process.env.PORT || 8001, () => {
     console.log(`server is running on port ${process.env.PORT}`);
   });
 }

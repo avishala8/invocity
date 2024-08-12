@@ -40,11 +40,11 @@ const SignIn = () => {
           const response = await Axios.post("/login", {
             phoneNumber,
           });
-          console.log(response);
+
           if (response.data) {
-            appDispatch({ type: "login", payload: response.data });
+            appDispatch({ type: "login", data: response.data });
             appDispatch({ type: "flashMessage", value: "Login Successfull!" });
-            console.log(response.data);
+
             navigate("/dashboard");
           }
         } catch {

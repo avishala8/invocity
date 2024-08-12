@@ -24,8 +24,11 @@ Axios.defaults.baseURL = process.env.BACKENDURL || "http://localhost:8080";
 
 function App() {
   const initialState = {
-    login: Boolean(false),
-    user: {},
+    login: Boolean(localStorage.getItem("appToken")),
+    user: {
+      token: localStorage.getItem("appToken"),
+      phoneNumber: localStorage.getItem("appPhoneNumber"),
+    },
     // successMsg: Boolean(true),
     flashMessages: [],
   };
@@ -47,6 +50,43 @@ function App() {
     }
   }
   const [state, dispatch] = useImmerReducer(ourReducer, initialState);
+  useEffect(() => {
+    if (state.login) {
+      localStorage.setItem("appToken", state.user.token);
+      localStorage.setItem("appPhoneNumber", state.user.username);
+    } else {
+      localStorage.removeItem("appToken");
+      localStorage.removeItem("appPhoneNumber");
+    }
+  }, [state.login]);
+  //check if token is expired on first render
+  useEffect(() => {
+    if (state.login) {
+      const ourRequest = Axios.CancelToken.source();
+      async function fetchResult() {
+        try {
+          const response = await Axios.post(
+            "/checkToken",
+            { token: state.user.token },
+            { cancelToken: ourRequest.token }
+          );
+          if (!response.data) {
+            dispatch({ type: "logout" });
+            dispatch({
+              type: "flashMessage",
+              value: "The session has expired. Please Login again!",
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchResult();
+      return () => {
+        ourRequest.cancel();
+      };
+    }
+  }, []);
 
   return (
     <StateContext.Provider value={state}>

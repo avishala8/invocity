@@ -15,17 +15,6 @@ User.prototype.login = function () {
       return reject(this.errors);
     }
     resolve(user);
-
-    //   let user = await usersCollection.findOne({
-    //     phoneNumber: this.data.phoneNumber,
-    //   });
-    //   if (user) {
-    //     console.log("Login Successfull");
-    //     resolve(user);
-    //   } else {
-    //     reject("Login Failed");
-    //     console.log("Phone Number is not Registered or Invalid.");
-    //   }
   });
 };
 
