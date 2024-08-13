@@ -114,10 +114,7 @@ function App() {
                         <Route path="/FAQs" element={<FAQSection />} />
                         <Route path="/contactus" element={<ContactUs />} />
                         <Route path="/terms" element={<Terms />} />
-                        <Route
-                          path="/dashboard"
-                          element={state.login ? <Dashboard /> : <HomeGuest />}
-                        />
+                        <Route path="/dashboard" element={<Dashboard />} />
                       </Routes>
                     </main>
                     <Footer />

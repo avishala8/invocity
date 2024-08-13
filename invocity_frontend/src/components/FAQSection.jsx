@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Page from "./Page";
 const FAQs = [
   {
     question: "What can I do with Invocity?",
@@ -75,20 +75,22 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="faq-section faq-container mt-5">
-      <h1 className="faq-title">Frequently Asked Questions</h1>
-      {FAQs.map((faq, index) => (
-        <div key={index} className="faq-item">
-          <div className="faq-question" onClick={() => handleToggle(index)}>
-            <span>{faq.question}</span>
-            <span>{openIndex === index ? "▲" : "▼"}</span>
+    <Page title="FAQs">
+      <div className="faq-section faq-container mt-5">
+        <h1 className="faq-title">Frequently Asked Questions</h1>
+        {FAQs.map((faq, index) => (
+          <div key={index} className="faq-item">
+            <div className="faq-question" onClick={() => handleToggle(index)}>
+              <span>{faq.question}</span>
+              <span>{openIndex === index ? "▲" : "▼"}</span>
+            </div>
+            {openIndex === index && (
+              <div className="faq-answer">{faq.answer}</div>
+            )}
           </div>
-          {openIndex === index && (
-            <div className="faq-answer">{faq.answer}</div>
-          )}
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </Page>
   );
 };
 

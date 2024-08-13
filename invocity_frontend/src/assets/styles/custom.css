@@ -1,9 +1,15 @@
-.custom-navbar {
-  background-color: white;
-  color: black;
-  padding-left: 30px;
+/* headeer */
+.header-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.header-container {
+  display: flex;
+}
+.navbar-brand img {
+  max-height: 40px;
+}
 .navbar-items {
   margin-left: 20px;
 }
@@ -13,8 +19,8 @@
 }
 
 .nav-centered {
-  margin-left: 290px;
-  text-align: center;
+  margin-left: 15rem;
+  /* text-align: center; */
   justify-content: center;
 }
 .btn:hover {
@@ -32,6 +38,7 @@
   background-color: orangered !important;
   border-color: orangered !important;
 }
+/* templates */
 .carousel-image {
   width: 500px;
   height: 600px;

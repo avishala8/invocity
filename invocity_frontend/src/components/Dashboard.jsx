@@ -1,10 +1,52 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Sales from "./Sales";
+import Page from "./Page";
+import StateContext from "./StateContext";
+import DispatchContext from "./DispatchContext";
+import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [activeItem, setActiveItem] = useState("");
+  const appState = useContext(StateContext);
+  const appDispatch = useContext(DispatchContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!appState.login) {
+      navigate("/login");
+      appDispatch({
+        type: "flashMessage",
+        value: "Login to Continue",
+      });
+    } else {
+      const ourRequest = Axios.CancelToken.source();
+      async function fetchResult() {
+        try {
+          const response = await Axios.post(
+            "/checkToken",
+            { token: appState.user.token },
+            { cancelToken: ourRequest.token }
+          );
+          if (!response.data) {
+            appDispatch({ type: "logout" });
+            appDispatch({
+              type: "flashMessage",
+              value: "The session has expired. Please Login again!",
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchResult();
+      return () => {
+        ourRequest.cancel();
+      };
+    }
+  }, []);
 
   const renderContent = () => {
     switch (activeItem) {
@@ -69,11 +111,13 @@ const Dashboard = () => {
     }
   };
   return (
-    <div className="dashboard">
-      <hr />
-      <Sidebar setActiveItem={setActiveItem} />
-      <div className="main-content-area">{renderContent()}</div>
-    </div>
+    <Page title="Dashboard">
+      <div className="dashboard">
+        <hr />
+        <Sidebar setActiveItem={setActiveItem} />
+        <div className="main-content-area">{renderContent()}</div>
+      </div>
+    </Page>
   );
 };
 

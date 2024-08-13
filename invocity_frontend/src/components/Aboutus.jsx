@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, ListGroup, Badge } from "react-bootstrap";
+import Page from "./Page";
 
 const features = [
   [
@@ -55,36 +56,41 @@ const features = [
 
 const FeatureList = () => {
   return (
-    <Container className="py-4">
-      <h2 className="text-center mb-4">Why Invocity?</h2>
-      <Row>
-        {features.map((column, colIdx) => (
-          <Col key={colIdx} md={4}>
-            <ListGroup variant="flush">
-              {column.map((feature, idx) => (
-                <ListGroup.Item key={idx} className="d-flex align-items-center">
-                  <span className="text-success">✔️</span>
-                  <span
-                    className={`ms-2 ${
-                      typeof feature === "string" && feature.new
-                        ? "fw-bold text-primary"
-                        : ""
-                    }`}
+    <Page title="About Us">
+      <Container className="py-4">
+        <h2 className="text-center mb-4">Why Invocity?</h2>
+        <Row>
+          {features.map((column, colIdx) => (
+            <Col key={colIdx} md={4}>
+              <ListGroup variant="flush">
+                {column.map((feature, idx) => (
+                  <ListGroup.Item
+                    key={idx}
+                    className="d-flex align-items-center"
                   >
-                    {typeof feature === "string" ? feature : feature.text}
-                  </span>
-                  {typeof feature !== "string" && feature.new && (
-                    <Badge bg="primary" className="ms-2">
-                      NEW
-                    </Badge>
-                  )}
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+                    <span className="text-success">✔️</span>
+                    <span
+                      className={`ms-2 ${
+                        typeof feature === "string" && feature.new
+                          ? "fw-bold text-primary"
+                          : ""
+                      }`}
+                    >
+                      {typeof feature === "string" ? feature : feature.text}
+                    </span>
+                    {typeof feature !== "string" && feature.new && (
+                      <Badge bg="primary" className="ms-2">
+                        NEW
+                      </Badge>
+                    )}
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </Page>
   );
 };
 

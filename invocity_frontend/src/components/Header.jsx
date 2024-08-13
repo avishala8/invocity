@@ -16,16 +16,12 @@ const Header = () => {
   }
 
   return (
-    <header>
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        className="custom-navbar basic-navbar-nav"
-      >
-        <Container>
+    <header className="header-top">
+      <Navbar collapseOnSelect expand="lg">
+        <div className="header-container">
           <LinkContainer to="/">
             <Navbar.Brand>
-              <img src={logo} alt="Invocity" />
+              <img src={logo} alt="Invocity" className="brand-logo" />
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -73,7 +69,7 @@ const Header = () => {
               )}
             </Nav>
           </Navbar.Collapse>
-        </Container>
+        </div>
       </Navbar>
     </header>
   );
