@@ -1,8 +1,6 @@
-const dotenv = require("dotenv");
-dotenv.config();
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-
+require("dotenv").config();
 exports.apiLogin = function (req, res) {
   let user = new User(req.body);
 
@@ -13,7 +11,7 @@ exports.apiLogin = function (req, res) {
       res.json({
         token: jwt.sign(
           { phoneNumber: user.data.phoneNumber },
-          process.env.CONNECTION_STRING,
+          process.env.JWT_SECRET,
           {
             expiresIn: "1h",
           }
@@ -33,7 +31,7 @@ exports.apiRegister = function (req, res) {
       res.json({
         token: jwt.sign(
           { phoneNumber: user.data.phoneNumber },
-          process.env.JWTSECRET,
+          process.env.JWT_SECRET,
           {
             expiresIn: "1h",
           }
@@ -52,7 +50,7 @@ exports.apiRegister = function (req, res) {
 
 exports.checkToken = function (req, res) {
   try {
-    req.apiUser = jwt.verify(req.body.token, process.env.CONNECTION_STRING);
+    req.apiUser = jwt.verify(req.body.token, process.env.JWT_SECRET);
     res.json(true);
   } catch (e) {
     res.json(false);

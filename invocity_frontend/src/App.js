@@ -105,7 +105,10 @@ function App() {
                     <Header />
                     <main>
                       <Routes>
-                        <Route path="/" element={<HomeGuest />} />
+                        <Route
+                          path="/"
+                          element={state.login ? <Dashboard /> : <HomeGuest />}
+                        />
                         <Route path="/aboutus" element={<Aboutus />} />
                         <Route path="/templates" element={<Templates />} />
                         <Route path="/FAQs" element={<FAQSection />} />
