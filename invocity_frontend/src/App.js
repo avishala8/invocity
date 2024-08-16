@@ -58,6 +58,7 @@ function App() {
       localStorage.removeItem("appToken");
       localStorage.removeItem("appPhoneNumber");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.login]);
   //check if token is expired on first render
   useEffect(() => {
@@ -86,6 +87,7 @@ function App() {
         ourRequest.cancel();
       };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
