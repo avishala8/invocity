@@ -90,7 +90,7 @@ const Dashboard = () => {
           <div className="dashboard">
             <div className="main-content">
               <header className="header">
-                <h1>Hello, Abhishek Vishala</h1>
+                <h1>Hello, {appState.user.username}</h1>
               </header>
               <div className="widgets">
                 <div className="widget">

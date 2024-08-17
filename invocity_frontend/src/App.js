@@ -27,6 +27,8 @@ function App() {
     login: Boolean(localStorage.getItem("appToken")),
     user: {
       token: localStorage.getItem("appToken"),
+      username: localStorage.getItem("appUsername"),
+      email: localStorage.getItem("appEmail"),
       phoneNumber: localStorage.getItem("appPhoneNumber"),
     },
     // successMsg: Boolean(true),
@@ -53,9 +55,13 @@ function App() {
   useEffect(() => {
     if (state.login) {
       localStorage.setItem("appToken", state.user.token);
-      localStorage.setItem("appPhoneNumber", state.user.username);
+      localStorage.setItem("appUsername", state.user.username);
+      localStorage.setItem("appEmail", state.user.email);
+      localStorage.setItem("appPhoneNumber", state.user.phoneNumber);
     } else {
       localStorage.removeItem("appToken");
+      localStorage.removeItem("appUsername");
+      localStorage.removeItem("appEmail");
       localStorage.removeItem("appPhoneNumber");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

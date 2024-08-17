@@ -1,17 +1,13 @@
-const dotenv = require("dotenv");
-dotenv.config();
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 
-const client = new MongoClient(process.env.CONNECTION_STRING);
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.CONNECTION_STRING);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
+};
 
-async function start() {
-  const start = await client.connect();
-  if (start) console.log("connected to DB");
-  module.exports = client;
-  const app = require("./app");
-  app.listen(process.env.PORT || 8001, () => {
-    console.log(`server is running on port ${process.env.PORT}`);
-  });
-}
-
-start();
+module.exports = connectDB;

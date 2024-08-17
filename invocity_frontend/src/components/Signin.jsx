@@ -7,31 +7,45 @@ import Page from "./Page";
 
 const SignIn = () => {
   const appDispatch = useContext(DispatchContext);
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const navigate = useNavigate();
 
   // const [loading, setLoading] = useState(false);
 
-  const handlePhoneNumberChange = (event) => {
-    const input = event.target.value;
+  // const handlePhoneNumberChange = (event) => {
+  //   const input = event.target.value;
 
-    // Check if input is a digit and the length is 10 or less and wont let users to add more than 10 digits
-    if (/^\d*$/.test(input) && input.length <= 10) {
-      setPhoneNumber(input);
-      setError("");
-    }
+  //   // Check if input is a digit and the length is 10 or less and wont let users to add more than 10 digits
+  //   if (/^\d*$/.test(input) && input.length <= 10) {
+  //     setPhoneNumber(input);
+  //     setError("");
+  //   }
+  // };
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    setEmailError("");
   };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    setPasswordError("");
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (phoneNumber.length !== 10) {
-      setError("Please enter a valid 10 digit mobile number.");
-      return;
-    }
+    setIsFormSubmitted(true);
+    // if (phoneNumber.length !== 10) {
+    //   setError("Please enter a valid 10 digit mobile number.");
+    //   return;
+    // }
 
     // Handle form submission
-    setIsFormSubmitted(true);
   };
   useEffect(() => {
     if (error.length === 0 && isFormSubmitted) {
@@ -39,25 +53,31 @@ const SignIn = () => {
         try {
           // setLoading(true);
           const response = await Axios.post("/login", {
-            phoneNumber,
+            email,
+            password,
           });
 
-          if (response.data) {
+          if (response.status === 200) {
             appDispatch({ type: "login", data: response.data });
             appDispatch({ type: "flashMessage", value: "Login Successfull!" });
 
             navigate("/dashboard");
           }
-        } catch {
-          setError("Please enter correct Mobile Number.");
-          appDispatch({ type: "success", value: false });
-          appDispatch({
-            type: "flashMessage",
-            value: "User Not Registered!",
-          });
-        } finally {
-          // setLoading(false); // Set loading to false when request ends
+        } catch (error) {
+          setError("Something went wrong");
+          console.log(error);
           setIsFormSubmitted(false);
+          if (error.response.status === 401) {
+            appDispatch({
+              type: "flashMessage",
+              value: "Invalid Password!",
+            });
+          } else if (error.response.status === 404) {
+            appDispatch({
+              type: "flashMessage",
+              value: "Sorry! User not registered.",
+            });
+          }
         }
       }
       loginUser();
@@ -75,7 +95,7 @@ const SignIn = () => {
               <p className="signin-subtitle">Ab Business karo tension free</p>
               <h2 className="signin-welcome">Welcome 🙏</h2>
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formPhoneNumber">
+                {/* <Form.Group controlId="formPhoneNumber">
                   <div className="input-group">
                     <span className="input-group-text">+91</span>
                     <Form.Control
@@ -89,6 +109,32 @@ const SignIn = () => {
                   <Form.Text className="text-muted">
                     We will be sending an OTP to this number
                   </Form.Text>
+                </Form.Group> */}
+                <Form.Group controlId="formEmail">
+                  <div className="input-group mb-2">
+                    <Form.Control
+                      type="email"
+                      placeholder="Email address"
+                      value={email}
+                      onChange={handleEmailChange}
+                    />
+                  </div>
+                  {emailError && (
+                    <div className="error-message">{emailError}</div>
+                  )}
+                </Form.Group>
+                <Form.Group controlId="formPassword">
+                  <div className="input-group mb-2">
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={handlePasswordChange}
+                    />
+                  </div>
+                  {passwordError && (
+                    <div className="error-message">{passwordError}</div>
+                  )}
                 </Form.Group>
 
                 <Button
@@ -96,7 +142,7 @@ const SignIn = () => {
                   type="submit"
                   className="signin-button"
                 >
-                  Continue with Mobile Number
+                  Continue Sign In
                 </Button>
 
                 <hr className="divider" />
