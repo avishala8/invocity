@@ -30,7 +30,7 @@ function Footer() {
           <h2>QUICK LINKS</h2>
           <ul>
             <li>
-              <Link to="/WhyInvocity" className="footer-link">
+              <Link to="/aboutus" className="footer-link">
                 Why Invocity
               </Link>
             </li>
@@ -46,7 +46,7 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/Invoice Formats" className="footer-link">
+              <Link to="/templates" className="footer-link">
                 Invoice Formats
               </Link>
             </li>
@@ -108,7 +108,7 @@ function Footer() {
           <h2>LEGAL</h2>
           <ul>
             <li>
-              <Link to="/Privacy" className="footer-link">
+              <Link to="/terms" className="footer-link">
                 Privacy
               </Link>
             </li>
@@ -118,7 +118,7 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/Terms" className="footer-link">
+              <Link to="/terms" className="footer-link">
                 Terms
               </Link>
             </li>

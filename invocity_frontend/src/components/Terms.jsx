@@ -16,8 +16,8 @@ const Terms = () => {
             </p>
             <p>
               These terms and conditions outline the rules and regulations for
-              the use of Swipe (Nextspeed Technologies Private Limited's)
-              Website and application, located at https://getswipe.in
+              the use of Invocity Website and application, located at{" "}
+              <a href="/">https://invocity.in</a>
             </p>
             <p>
               By accessing this application, we assume you accept these terms
@@ -54,11 +54,10 @@ const Terms = () => {
 
             <h3>Privacy Policy</h3>
             <p>
-              At Invocity, accessible from{" "}
-              <a href="https://invocity.in/">https://invocity.in/</a>, one of
-              our main priorities is the privacy of our visitors. This Privacy
-              Policy document contains types of information that is collected
-              and recorded by Invocity and how we use it.
+              At Invocity, accessible from <a href="/">https://invocity.in</a> ,
+              one of our main priorities is the privacy of our visitors. This
+              Privacy Policy document contains types of information that is
+              collected and recorded by Invocity and how we use it.
             </p>
             <p>
               If you have additional questions or require more information about
